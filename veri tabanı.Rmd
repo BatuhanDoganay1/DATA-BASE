@@ -1,0 +1,30 @@
+---
+title: "veri tabanı sistemleri"
+output: html_document
+author: "Batuhan Doğanay"
+---
+
+```{r}
+Customers<-read_csv("Untitled.csv")
+CustomersAddress<-read_csv("Untitled2.csv")
+sqldf("select *
+      from Customers ")
+sqldf("select * from CustomersAddress")
+sqldf("select Customers.CustomerID,title, CustomersAddress.AddressType 
+      from Customers
+      inner join CustomersAddress on Customers.CustomerID= CustomersAddress.CustomerID
+      limit 10")
+sqldf("select Customers.CustomerID,title, CustomersAddress.AddressType 
+      from Customers
+      inner join CustomersAddress on Customers.CustomerID= CustomersAddress.CustomerID
+      group by Title
+      limit 10")
+sqldf("select * 
+      from Customers 
+      where FirstName like 'L%' or '%a'")
+sqldf("select CustomerID, Title
+      from Customers 
+      group by Title")
+options(sqldf.connection = "SQLite")
+```
+
